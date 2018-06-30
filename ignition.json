@@ -1,0 +1,71 @@
+{
+    "ignition": {
+      "config": {},
+      "timeouts": {},
+      "version": "2.1.0"
+    },
+    "networkd": {},
+    "passwd": {
+      "users": [
+        {
+          "name": "core",
+          "sshAuthorizedKeys": [
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8vsyLMMsG7bJaXuYqffExvwSbPCMRd0dewT/8TmHW1+/XWTNwqkp2GTMBIbuz+QD4+djUvARiMBNKfVnWhexbHYzYPAvZYZbTKoOGRQH0lMHK8aA7UFZt4k9xfBAUpxctWRsLRIxZ0GhaZSaC3Kj70yaKmuJ5uSaWEVZlTG8Hns3pC/n/yyckswMfYf9v0SUelwX1dnHW3l1oluQfZb/NM8AMj2SNxnScgLPteTs4Nh56OrMY9ZH4zIwpxqWu8yM7eoBrFUe4bGspxc6BSOLbzI7H59UHyzkXDTp2K+JiygJ9ECO0oAkwyFbGeecFbx3QYD5XeQ3ls5t1PALYro75"
+          ]
+        }
+      ]
+    },
+    
+    "storage": {
+      "disks": [
+        {
+          "device": "/dev/sda",
+          "wipeTable": true,
+          "partitions": [
+            {
+              "label": "ROOT",
+              "number": 1
+            }
+          ]
+        }
+      ],
+      "filesystems": [
+        {
+          "name": "ROOT",
+          "mount": {
+              "device": "/dev/sda1",
+              "format": "ext4",
+              "label": "ROOT",
+              "wipeFilesystem": true
+          }
+        }
+      ], 
+      "files": [
+          {
+              "filesystem": "root",
+              "path": "/etc/torcx/next-profile",
+              "mode": 420,
+              "contents": { "source": "data:,docker" }
+          },
+          {
+              "filesystem": "root",
+              "path": "/var/lib/torcx/store/docker:17.03.torcx.tgz",
+              "mode": 420,
+              "contents": {
+                  "source": "https://tectonic-torcx.release.core-os.net/pkgs/amd64-usr/docker/47195e5d8bc127ab53455e104ba3a3dc087a8d2498fa270175ce73cbf153e64a3d8fb5d153b4323ccb71cb0fd7a029086bf425bc4e192d495903e493f486e7e0/docker:17.03.torcx.tgz",
+                  "verification": { "hash": "sha512-47195e5d8bc127ab53455e104ba3a3dc087a8d2498fa270175ce73cbf153e64a3d8fb5d153b4323ccb71cb0fd7a029086bf425bc4e192d495903e493f486e7e0" }
+              }
+          },
+          {
+              "filesystem": "root",
+              "path": "/etc/torcx/profiles/docker.json",
+              "mode": 420,
+              "contents": { "source": "data:,%7B%22kind%22%3A%22profile-manifest-v0%22%2C%22value%22%3A%7B%22images%22%3A%5B%7B%22name%22%3A%22docker%22%2C%22reference%22%3A%2217.03%22%7D%5D%7D%7D" }
+          }
+      ]
+    },
+    "systemd": {
+      "units": [
+      ]
+    }
+  }
